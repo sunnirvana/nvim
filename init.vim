@@ -1,10 +1,12 @@
-"  __  ____   __  _   ___     _____ __  __ ____   ____
-" |  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
-" | |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
-" | |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
-" |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
-
-" Author: @theniceboy
+"   
+" __   __     _            __     _____ __  __ 
+" \ \ / /   _| |__   ___   \ \   / /_ _|  \/  |
+"  \ V / | | | '_ \ / _ \   \ \ / / | || |\/| |
+"   | || |_| | |_) | (_) |   \ V /  | || |  | |
+"   |_| \__,_|_.__/ \___/     \_/  |___|_|  |_|
+"                                              
+"  
+" Author: @YuboSun
 
 " ===
 " === Auto load for first time uses
@@ -26,20 +28,29 @@ endif
 let &t_ut=''
 set autochdir
 
+" vimrc文件修改之后自动加载, windows
+autocmd! bufwritepost _vimrc source %
+" vimrc文件修改之后自动加载, linux
+autocmd! bufwritepost .vimrc source %
+
+" To get correct comment highlighting
+" autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " ===
 " === Editor behavior
 " ===
 set number
-set relativenumber
+"set relativenumber
 set cursorline
+" 突入显示当前列
+set cursorcolumn
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set list
 set listchars=tab:▸\ ,trail:▫
-set scrolloff=5
+set scrolloff=7 " keep 5 lines offset to the bottom and top
 set ttimeoutlen=0
 set notimeout
 set viewoptions=cursor,folds,slash,unix
@@ -48,19 +59,46 @@ set tw=0
 set indentexpr=
 set foldmethod=indent
 set foldlevel=99
+" 设置取消备份 禁止生成临时文件
+set nobackup
+" 关闭交换文件
+set noswapfile
+set nowritebackup
+set directory=/tmp/.swapfiles//
+" 设置匹配模式 类似当输入一个左括号时会匹配响应的右括号
+set showmatch
+set matchtime=0
+" 选中并高亮最后一次插入的内容
+nnoremap gv `[v`]
+"在insert模式下能用删除键进行删除
+set backspace=indent,eol,start
+" set fenc=utf-8
+" set fencs=utf-8,gbk,gb18030,gb2312,cp936,usc-bom,euc-jp,ucs-bom
+" set enc=utf-8
+" set termencoding=utf-8
+" vim支持打开的文件编码  
+set fileencodings=utf-8,ucs-bom,shift-jis,latin1,big5,gb18030,gbk,gb2312,cp936  "文件 UTF-8 编码  
+" 解决显示界面乱码  
+set fileencoding=utf-8  
+set encoding=utf-8      "vim 内部编码  
+set termencoding=utf-8  
 set formatoptions-=tc
+" 如遇Unicode值大于255的文本，不必等到空格再折行
+set formatoptions+=m
+" 合并两行中文时，不在中间加空格
+set formatoptions+=B
 set splitright
 set splitbelow
 set mouse=a
 set noshowmode
 set showcmd
 " set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu
+"set wildmenu
 exec "nohlsearch"
 set ignorecase
 set smartcase
 set shortmess+=c
-set inccommand=split
+" set inccommand=split
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set visualbell
@@ -88,17 +126,24 @@ let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 "tnoremap <C-N> <C-\><C-N>:q<CR>
 
-
 " ===
 " === Basic Mappings
 " ===
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
+" let mapleader=","
+" Map ; to : and save a million keystrokes 用于快速进入命令行
 map ; :
 
 " Save & quit
-map Q :q<CR>
-map S :w<CR>
+"map Q :q<CR>
+"map S :w<CR>
+
+vmap j gj
+vmap k gk
+
+" Remap U to <C-r> for easier redo
+nnoremap U <C-r>
 
 " Open the vimrc file anytime
 map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -106,29 +151,17 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 " Open Startify
 map <LEADER>st :Startify<CR>
 
-" Undo operations
-noremap l u
-" Undo in Insert mode
-inoremap <C-l> <C-u>
-
-" Insert Key
-noremap k i
-noremap K I
-
 " Copy to system clipboard
-vnoremap Y :w !xclip -i -sel c<CR>
-
-" Joining lines
-noremap H J
-
-" Indentation
-nnoremap < <<
-nnoremap > >>
+if has('macunix') "Mac
+    vnoremap Y :.w !pbcopy <CR><CR>
+elseif has('unix') "Linux
+    vnoremap Y :.w !xclip -i -sel c<CR>
+endif
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
-noremap = nzz
-noremap - Nzz
+noremap - nzz
+noremap = Nzz
 
 " Adjacent duplicate words
 map <LEADER>dw /\(\<\w\+\>\)\_s*\1
@@ -136,40 +169,17 @@ map <LEADER>dw /\(\<\w\+\>\)\_s*\1
 " Folding
 map <silent> <LEADER>o za
 
+" Disable ex-mode
+:nnoremap Q <Nop>
+
 
 " ===
 " === Cursor Movement
 " ===
-" New cursor movement (the default arrow keys are used for resizing windows)
-"     ^
-"     u
-" < n   i >
-"     e
-"     v
-noremap <silent> u k
-noremap <silent> n h
-noremap <silent> e j
-noremap <silent> i l
-
-" U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 5k
-noremap <silent> E 5j
-
 " N key: go to the start of the line
-noremap <silent> N 0
+noremap <silent> H ^
 " I key: go to the end of the line
-noremap <silent> I $
-
-" Faster in-line navigation
-noremap W 5w
-noremap B 5b
-
-" set h (same as n, cursor left) to 'end of word'
-noremap h e
-
-" Ctrl + U or E will move up/down the view port without moving the cursor
-noremap <C-U> 5<C-y>
-noremap <C-E> 5<C-e>
+noremap <silent> L $
 
 
 " ===
@@ -177,53 +187,58 @@ noremap <C-E> 5<C-e>
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
 map <LEADER>w <C-w>w
-map <LEADER>u <C-w>k
-map <LEADER>e <C-w>j
-map <LEADER>n <C-w>h
-map <LEADER>i <C-w>l
+map <LEADER>h <C-w>h
+map <LEADER>j <C-w>j
+map <LEADER>k <C-w>k
+map <LEADER>l <C-w>l
 
 " Disabling the default s key
 noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map se :set splitbelow<CR>:split<CR>
-map sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map si :set splitright<CR>:vsplit<CR>
+map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+map sj :set splitbelow<CR>:split<CR>
+map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+map sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
+map <C-up> :res +5<CR>
+map <C-down> :res -5<CR>
+map <C-left> :vertical resize-5<CR>
+map <C-right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap spj <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap sph <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
-
+noremap srk <C-w>b<C-w>K
+noremap srh <C-w>b<C-w>H
 
 " ===
 " === Tab management
 " ===
 " Create a new tab with tu
-map tu :tabe<CR>
+map tt :tabe<CR>
 " Move around tabs with tn and ti
-map tn :-tabnext<CR>
-map ti :+tabnext<CR>
+map tp :-tabnext<CR>
+map tn :+tabnext<CR>
 " Move the tabs with tmn and tmi
-map tmn :-tabmove<CR>
-map tmi :+tabmove<CR>
+map tmp :-tabmove<CR>
+map tmn :+tabmove<CR>
 
+" ===
+" === Tagbar
+" ===
+let g:tagbar_width = 60
+nmap tb :TagbarToggle<cr>  
+" -----------------------------
 
 " ===
 " === My Snippets
 " ===
-source ~/.config/nvim/snippits.vim
+"source ~/.config/nvim/snippits.vim
 
 
 " ===
@@ -234,7 +249,7 @@ source ~/.config/nvim/snippits.vim
 map <LEADER>/ :set splitbelow<CR>:sp<CR>:term<CR>
 
 " Press space twice to jump to the next '<++>' and edit it
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " Spelling Check with <space>sc
 map <LEADER>sc :set spell!<CR>
@@ -244,54 +259,11 @@ inoremap <C-x> <Esc>ea<C-x>s
 " Press ` to change case (instead of ~)
 map ` ~
 
-imap <C-c> <Esc>zza
-nmap <C-c> zz
-
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
 
 " Call figlet
 map tx :r !figlet 
-
-" Compile function
-map r :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-  exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    set splitright
-    ":vsp
-    ":vertical resize-10
-    :sp
-    :term python3 %
-  elseif &filetype == 'html'
-    exec "!chromium % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  endif
-endfunc
-
-" working on it...
-map R :call CompileBuildrrr()<CR>
-func! CompileBuildrrr()
-  exec "w"
-  if &filetype == 'vim'
-    exec "source $MYVIMRC"
-  elseif &filetype == 'markdown'
-    exec "echo"
-  endif
-endfunc
-
 
 " ===
 " === Install Plugins with Vim-Plug
@@ -299,15 +271,14 @@ endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Testing my own plugin
-Plug 'theniceboy/vim-calc'
-
 " Pretty Dress
-"Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'liuchengxu/eleline.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'liuchengxu/space-vim-theme'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'kien/rainbow_parentheses.vim'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -413,18 +384,23 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 set termguicolors     " enable true colors support
 let g:space_vim_transp_bg = 1
+"let g:vim_monokai_tasty_italic = 1
 "set background=dark
 colorscheme space_vim_theme
+"colorscheme vim-monokai-tasty
 
 " ===================== Start of Plugin Settings =====================
 
 " ===
 " === Airline
 " ===
+set laststatus=2
+let g:airline_powerline_fonts = 1
 let g:airline_theme='dracula'
 let g:airline#extensions#coc#enabled = 0
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#buffer_nr_show = 1 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -448,7 +424,7 @@ let g:airline_mode_map = {
 " ===
 " === NERDTree
 " ===
-map tt :NERDTreeToggle<CR>
+map ff :NERDTreeToggle<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = "N"
 let NERDTreeMapUpdirKeepOpen = "n"
@@ -478,6 +454,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+
+" ==
+" == Nerdcommenter
+" ==
+" 注释符号和字符中间有空格
+let g:NERDSpaceDelims=1
+let g:NERDTrimTrailingWhitespace=1
 
 
 " ===
@@ -511,7 +495,9 @@ let g:NERDTreeIndicatorMapCustom = {
 silent! au BufEnter * silent! unmap if
 "au TextChangedI * GitGutter
 " Installing plugins
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-snippets', 'coc-emmet', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore']
+" https://github.com/mads-hartmann/bash-language-server
+" https://github.com/rcjsuen/dockerfile-language-server-nodejs
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-snippets', 'coc-neosnippet', 'coc-emmet', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-yaml', 'coc-highlight', 'coc-vetur']
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -529,6 +515,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+
+" Use K to show documentation in preview window
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 
 " ===
@@ -589,7 +585,10 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-map <C-p> :FZF<CR>
+" nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-e> :Buffers<CR>
+"----------------------------
 
 
 " ===
@@ -662,26 +661,41 @@ let g:startify_lists = [
 " ===
 nnoremap <silent> <LEADER>f :F  %<left><left>
 
-" ===
-" === vim-calc
-" ===
-map <LEADER>a :call Calc()<CR>
-" Testing
-"if !empty(glob('~/Github/vim-calc/vim-calc.vim'))
-  "source ~/Github/vim-calc/vim-calc.vim
-"endif
-
 
 " ===
 " === emmet
 " ===
-let g:user_emmet_leader_key='<C-f>'
+"let g:user_emmet_leader_key='<C-e>'
 
 
 " ===
 " === Bullets.vim
 " ===
 let g:bullets_set_mappings = 0
+
+
+" ===
+" === rainbow_parentheses
+" ===
+let g:rbpt_colorpairs = [
+	\ [158, '#00ceb3'],
+	\ [081, '#00a3ff'],
+	\ [214, '#ff8d00'],
+	\ [123, '#3fffc9'],
+	\ [045, '#29b9ec'],
+	\ [190, '#bfec29'],
+	\ [208, '#ffad00'],
+	\ [117, '#48bde0'],
+	\ ]
+
+let g:rbpt_max = 8
+let g:rbpt_loadcmd_toggle = 0
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax c,cpp,go,h,java,python,javascript,scala,coffee RainbowParenthesesLoadSquare
+au Syntax c,cpp,go,h,java,python,javascript,scala,coffee,scss  RainbowParenthesesLoadBraces
+" ----------------------------
 
 
 " ===
