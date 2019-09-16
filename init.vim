@@ -398,8 +398,8 @@ set termguicolors     " enable true colors support
 let g:space_vim_transp_bg = 1
 "let g:vim_monokai_tasty_italic = 1
 "set background=dark
-colorscheme space_vim_theme
-"colorscheme vim-monokai-tasty
+"colorscheme space_vim_theme
+colorscheme vim-monokai-tasty
 
 " ===================== Start of Plugin Settings =====================
 
