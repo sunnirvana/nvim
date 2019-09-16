@@ -4,12 +4,12 @@
             "command": "bash-language-server",
             "args": ["start"],
             "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"],
+            "ignoredRootPaths": ["~"]
         },
         "dockerfile": {
             "command": "docker-langserver",
             "filetypes": ["dockerfile"],
-            "args": ["--stdio"],
-        },
+            "args": ["--stdio"]
+        }
     }
 }

@@ -28,6 +28,9 @@ endif
 let &t_ut=''
 set autochdir
 
+filetype plugin on
+syntax on
+
 " vimrc文件修改之后自动加载, windows
 autocmd! bufwritepost _vimrc source %
 " vimrc文件修改之后自动加载, linux
@@ -202,10 +205,12 @@ map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 map sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-map <C-up> :res +5<CR>
-map <C-down> :res -5<CR>
-map <C-left> :vertical resize-5<CR>
-map <C-right> :vertical resize+5<CR>
+" map <C-up> :res +5<CR>
+" map <C-down> :res -5<CR>
+map <C-up> :vertical resize-5<CR>
+map <C-down> :vertical resize+5<CR>
+" map <C-left> :vertical resize-5<CR>
+" map <C-right> :vertical resize+5<CR>
 
 " Place the two screens up and down
 noremap spj <C-w>t<C-w>K
@@ -238,7 +243,7 @@ nmap tb :TagbarToggle<cr>
 " ===
 " === My Snippets
 " ===
-"source ~/.config/nvim/snippits.vim
+source ~/.config/nvim/snippits.vim
 
 
 " ===
@@ -340,15 +345,22 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
+Plug 'vimwiki/vimwiki'
 
 " For general writing
 Plug 'reedes/vim-wordy'
 Plug 'ron89/thesaurus_query.vim'
 
+" Code management
+Plug 'psf/black'
+
 " Bookmarks
 Plug 'kshenoy/vim-signature'
 
 " Other useful utilities
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
