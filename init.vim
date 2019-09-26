@@ -54,8 +54,11 @@ set softtabstop=4
 set list
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=7 " keep 5 lines offset to the bottom and top
-set ttimeoutlen=0
-set notimeout
+set timeout ttimeout
+set timeoutlen=500
+set ttimeoutlen=10
+set updatetime=100
+"set notimeout
 set viewoptions=cursor,folds,slash,unix
 set wrap
 set tw=0
@@ -74,6 +77,7 @@ set matchtime=0
 " 选中并高亮最后一次插入的内容
 nnoremap gv `[v`]
 "在insert模式下能用删除键进行删除
+set backspace=2
 set backspace=indent,eol,start
 " set fenc=utf-8
 " set fencs=utf-8,gbk,gb18030,gb2312,cp936,usc-bom,euc-jp,ucs-bom
@@ -95,7 +99,8 @@ set splitbelow
 set mouse=a
 set noshowmode
 set showcmd
-" set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set cmdheight=2     " Height of the command line
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 "set wildmenu
 exec "nohlsearch"
 set ignorecase
@@ -121,6 +126,10 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" ===
+" === Buffet
+" ===
+source ~/.config/nvim/conf/buffet.vim
 
 " ===
 " === Terminal Behavior
@@ -134,116 +143,20 @@ autocmd TermOpen term://* startinsert
 " ===
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
-" let mapleader=","
-" Map ; to : and save a million keystrokes 用于快速进入命令行
 map ; :
-
-" Save & quit
-"map Q :q<CR>
-"map S :w<CR>
-
-vmap j gj
-vmap k gk
-
-" Remap U to <C-r> for easier redo
-nnoremap U <C-r>
-
-" Open the vimrc file anytime
-map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-
-" Open Startify
-map <LEADER>st :Startify<CR>
-
-" Copy to system clipboard
-if has('macunix') "Mac
-    vnoremap Y :.w !pbcopy <CR><CR>
-elseif has('unix') "Linux
-    vnoremap Y :.w !xclip -i -sel c<CR>
-endif
-
-" Search
-map <LEADER><CR> :nohlsearch<CR>
-noremap - nzz
-noremap = Nzz
-
-" Adjacent duplicate words
-map <LEADER>dw /\(\<\w\+\>\)\_s*\1
-
-" Folding
-map <silent> <LEADER>o za
-
-" Disable ex-mode
-:nnoremap Q <Nop>
-
-
-" ===
-" === Cursor Movement
-" ===
-" N key: go to the start of the line
-noremap <silent> H ^
-" I key: go to the end of the line
-noremap <silent> L $
-
-
-" ===
-" === Window management
-" ===
-" Use <space> + new arrow keys for moving the cursor around windows
-map <LEADER>w <C-w>w
-map <LEADER>h <C-w>h
-map <LEADER>j <C-w>j
-map <LEADER>k <C-w>k
-map <LEADER>l <C-w>l
-
-" Disabling the default s key
-noremap s <nop>
-
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map sj :set splitbelow<CR>:split<CR>
-map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map sl :set splitright<CR>:vsplit<CR>
-
-" Resize splits with arrow keys
-" map <C-up> :res +5<CR>
-" map <C-down> :res -5<CR>
-map <C-up> :vertical resize-5<CR>
-map <C-down> :vertical resize+5<CR>
-" map <C-left> :vertical resize-5<CR>
-" map <C-right> :vertical resize+5<CR>
-
-" Place the two screens up and down
-noremap spj <C-w>t<C-w>K
-" Place the two screens side by side
-noremap sph <C-w>t<C-w>H
-
-" Rotate screens
-noremap srk <C-w>b<C-w>K
-noremap srh <C-w>b<C-w>H
-
-" ===
-" === Tab management
-" ===
-" Create a new tab with tu
-map tt :tabe<CR>
-" Move around tabs with tn and ti
-map tp :-tabnext<CR>
-map tn :+tabnext<CR>
-" Move the tabs with tmn and tmi
-map tmp :-tabmove<CR>
-map tmn :+tabmove<CR>
+source ~/.config/nvim/conf/mappings.vim
 
 " ===
 " === Tagbar
 " ===
 let g:tagbar_width = 60
-nmap tb :TagbarToggle<cr>  
+nmap tb :TagbarToggle<CR>
 " -----------------------------
 
 " ===
 " === My Snippets
 " ===
-source ~/.config/nvim/snippits.vim
+source ~/.config/nvim/conf/snippits.vim
 
 
 " ===
@@ -268,7 +181,7 @@ map ` ~
 autocmd BufEnter * silent! lcd %:p:h
 
 " Call figlet
-map tx :r !figlet 
+" map tx :r !figlet
 
 " ===
 " === Install Plugins with Vim-Plug
@@ -284,6 +197,7 @@ Plug 'bling/vim-bufferline'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'bagrat/vim-buffet'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -311,6 +225,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ncm2/ncm2-path'
 "Plug 'ncm2/ncm2-match-highlight'
 "Plug 'ncm2/ncm2-markdown-subscope'
+"Plug 'zxqfl/tabnine-vim'
 
 " Undo Tree
 Plug 'mbbill/undotree/'
@@ -345,7 +260,7 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 
 " For general writing
 Plug 'reedes/vim-wordy'
@@ -386,7 +301,7 @@ call plug#end()
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
   let has_machine_specific_file = 0
-  silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+  silent! exec "!cp ~/.config/nvim/conf/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
 
@@ -481,7 +396,7 @@ let g:NERDTrimTrailingWhitespace=1
 " ===
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>": "\<CR>")
+"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<CR>": "\<CR>")
 "autocmd BufEnter * call ncm2#enable_for_buffer()
 "set completeopt=noinsert,menuone,noselect
 "let ncm2#popup_delay = 5
@@ -500,44 +415,7 @@ let g:NERDTrimTrailingWhitespace=1
 " ===
 " === coc
 " ===
-" fix the most annoying bug that coc has
-"autocmd WinEnter * call timer_start(1000, { tid -> execute('unmap if')})
-"silent! autocmd BufEnter * silent! call silent! timer_start(600, { tid -> execute('unmap if')})
-"silent! autocmd WinEnter * silent! call silent! timer_start(600, { tid -> execute('unmap if')})
-silent! au BufEnter * silent! unmap if
-"au TextChangedI * GitGutter
-" Installing plugins
-" https://github.com/mads-hartmann/bash-language-server
-" https://github.com/rcjsuen/dockerfile-language-server-nodejs
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-snippets', 'coc-neosnippet', 'coc-emmet', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-yaml', 'coc-highlight', 'coc-vetur']
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Useful commands
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-
-" Use K to show documentation in preview window
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+source ~/.config/nvim/conf/coc.vim
 
 " ===
 " === indentLine
@@ -731,9 +609,14 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_fzf_preview = ['right:50%']
 
 
+" ===
+" === Vimwiki.vim
+" ===
+" let g:vimwiki_file_exts = 'c, cpp, wav, txt, h, hpp, zip, sh, awk, ps, pdf, yaml, toml, json'
+" let g:vimwiki_valid_html_tags = ''
+
 
 " ===================== End of Plugin Settings =====================
-
 " Open the _machine_specific.vim file if it has just been created
 if has_machine_specific_file == 0
   exec "e ~/.config/nvim/_machine_specific.vim"
