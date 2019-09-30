@@ -116,7 +116,7 @@ cnoremap <C-h> <BS>
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Write buffer (save)
-noremap <Leader>w :w<CR>
+noremap <LEADER>w :w<CR>
 imap <C-S> <esc>:w<CR>
 imap <C-Q> <esc>:wq<CR>
 
@@ -141,13 +141,13 @@ vnoremap j gj
 vnoremap k gk
 
 "tabline operation
-" noremap <leader>tn :tabnew<CR>
-" noremap <leader>te :tabedit
-" noremap <leader>tm :tabmove
+" noremap <LEADER>tn :tabnew<CR>
+" noremap <LEADER>te :tabedit
+" noremap <LEADER>tm :tabmove
 
 "buffer
-" nnoremap <leader>bc :BufOnly<CR>
-" nnoremap <Leader>bo :BufOnly
+" nnoremap <LEADER>bc :BufOnly<CR>
+" nnoremap <LEADER>bo :BufOnly
 "yank to end
 " nnoremap Y y$
 
@@ -159,18 +159,18 @@ nmap <C-w>] :vertical resize +3<CR>
 nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " a command which  edit PLugin config easy
-nnoremap <leader>p :EditPluginSetting <Space>
+nnoremap <LEADER>p :EditPluginSetting <Space>
 
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
+nmap <LEADER>1 <Plug>BuffetSwitch(1)
+nmap <LEADER>2 <Plug>BuffetSwitch(2)
+nmap <LEADER>3 <Plug>BuffetSwitch(3)
+nmap <LEADER>4 <Plug>BuffetSwitch(4)
+nmap <LEADER>5 <Plug>BuffetSwitch(5)
+nmap <LEADER>6 <Plug>BuffetSwitch(6)
+nmap <LEADER>7 <Plug>BuffetSwitch(7)
+nmap <LEADER>8 <Plug>BuffetSwitch(8)
+nmap <LEADER>9 <Plug>BuffetSwitch(9)
+nmap <LEADER>0 <Plug>BuffetSwitch(10)
 
 " Improve scroll, credits: https://github.com/Shougo
 nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
