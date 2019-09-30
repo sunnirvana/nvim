@@ -1,6 +1,6 @@
 {
     "suggest.triggerAfterInsertEnter": false,
-    "suggest.timeout": 500,
+    "suggest.timeout": 5000,
     "suggest.noselect": false,
     "suggest.detailField":"preview",
     "suggest.snippetIndicator": "🌟",
@@ -39,6 +39,7 @@
 	"diagnostic.warningSign": "●",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.checkCurrentLine": true,
     //git
     "git.enableGutters": true,
     "git.branchCharacter":"\uf408",
@@ -66,7 +67,8 @@
     "prettier.tslintIntegration": true,
     "prettier.stylelintIntegration": true,
     //emmet
-    "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
+    "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact", "markdown": "html"},
+    "emmet.excludeLanguages": [],
     //python
     "python.autoComplete.addBrackets": true,
     // eslint
