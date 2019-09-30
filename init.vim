@@ -166,7 +166,7 @@ source ~/.config/nvim/conf/snippits.vim
 " Opening a terminal window
 map <LEADER>/ :set splitbelow<CR>:sp<CR>:term<CR>
 
-" Press space twice to jump to the next '<++>' and edit it
+" Press <LEADER> twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " Spelling Check with <space>sc
@@ -281,7 +281,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'scrooloose/nerdcommenter' " in <LEADER>cc to comment a line, <LEADER>cu to uncomment
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 Plug 'tmhedberg/SimpylFold'
 "Plug 'vim-scripts/restore_view.vim'
@@ -475,7 +475,7 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-" nnoremap <silent> <Leader>f :Files<CR>
+" nnoremap <silent> <LEADER>f :Files<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-e> :Buffers<CR>
 "----------------------------
