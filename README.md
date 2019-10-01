@@ -6,6 +6,16 @@ https://github.com/junegunn/fzf
 
 ## ctags
 
+http://docs.ctags.io/en/latest/index.html
+
+注意 Mac 上要安装最新的 ctags ，不然会有 ctags 不能运行的错误，extras -> extra
+
+```shell
+# Mac
+brew tap universal-ctags/universal-ctags
+brew install --HEAD universal-ctags
+```
+
 #### [中文版 README](./README_cn.md) by [@EvanMeek](https://github.com/EvanMeek)
 
 Please **DO NOT** just copy this config without really looking at it! Please, at least, read this README file!
