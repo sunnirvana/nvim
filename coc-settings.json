@@ -71,6 +71,7 @@
     "emmet.excludeLanguages": [],
     //python
     "python.autoComplete.addBrackets": true,
+    "python.jediEnabled": false,
     // eslint
     "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact"],
     "eslint.autoFix": true,

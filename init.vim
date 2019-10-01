@@ -149,8 +149,8 @@ source ~/.config/nvim/conf/mappings.vim
 " ===
 " === Tagbar
 " ===
-let g:tagbar_width = 60
-nmap tb :TagbarToggle<CR>
+" let g:tagbar_width = 60
+" nmap tb :TagbarToggle<CR>
 " -----------------------------
 
 " ===
@@ -191,8 +191,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Pretty Dress
 Plug 'vim-airline/vim-airline'
-Plug 'liuchengxu/eleline.vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'liuchengxu/eleline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'patstockwell/vim-monokai-tasty'
@@ -203,11 +203,12 @@ Plug 'bagrat/vim-buffet'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
-Plug '/usr/local/opt/fzf'
+"Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Taglist
-"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
+"Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 
 " Error checking
@@ -321,32 +322,7 @@ colorscheme space_vim_theme
 " ===
 " === Airline
 " ===
-set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline_theme='dracula'
-let g:airline#extensions#coc#enabled = 0
-let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#buffer_nr_show = 1 
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'Nor',
-      \ 'i'  : 'Ins',
-      \ 'R'  : 'Rpl',
-      \ 'c'  : 'Cmd',
-      \ 'v'  : 'Vis',
-      \ 'V'  : 'Vli',
-      \ '' : 'Vbl',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-
+source ~/.config/nvim/conf/airline.vim
 
 " ===
 " === NERDTree
@@ -475,10 +451,8 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-" nnoremap <silent> <LEADER>f :Files<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-e> :Buffers<CR>
-"----------------------------
 
 
 " ===
@@ -522,11 +496,11 @@ let g:undotree_ShortIndicators = 1
 " == vim-multiple-cursor
 " ==
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key      = '<c-k>'
+let g:multi_cursor_start_word_key      = '<c-n>'
 let g:multi_cursor_select_all_word_key = '<a-k>'
 let g:multi_cursor_start_key           = 'g<c-k>'
 let g:multi_cursor_select_all_key      = 'g<a-k>'
-let g:multi_cursor_next_key            = '<c-k>'
+let g:multi_cursor_next_key            = '<c-n>'
 let g:multi_cursor_prev_key            = '<c-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
@@ -591,23 +565,7 @@ au Syntax c,cpp,go,h,java,python,javascript,scala,coffee,scss  RainbowParenthese
 " ===
 " === Vista.vim
 " ===
-map <silent> T :Vista!!<CR>
-map <silent> <C-t> :Vista finder<CR>
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-
-" e.g., more compact: ["▸ ", ""]
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-"let g:vista_default_executive = 'ctags'
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
-let g:vista_fzf_preview = ['right:50%']
-
+source ~/.config/nvim/conf/vista.vim
 
 " ===
 " === Vimwiki.vim
