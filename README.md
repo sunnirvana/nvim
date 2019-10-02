@@ -8,6 +8,40 @@ https://github.com/junegunn/fzf
 
 http://docs.ctags.io/en/latest/index.html
 
+### Linux installation
+
+http://docs.ctags.io/en/latest/autotools.html
+
+```shell
+# Debian prerequisites
+sudo apt install \
+    gcc make \
+    pkg-config autoconf automake \
+    python3-docutils \
+    libseccomp-dev \
+    libjansson-dev \
+    libyaml-dev \
+    libxml2-dev
+
+# Fedora prerequisites
+sudo dnf install \
+    gcc make \
+    pkgconfig autoconf automake \
+    python3-docutils \
+    libseccomp-devel \
+    jansson-devel \
+    libyaml-devel \
+    libxml2-devel
+
+# Installation
+./autogen.sh
+./configure --prefix=/where/you/want # defaults to /usr/local
+make
+make install # may require extra privileges depending on where to install
+```
+
+### Mac installation
+
 注意 Mac 上要安装最新的 ctags ，不然会有 ctags 不能运行的错误，extras -> extra
 
 ```shell
@@ -15,10 +49,6 @@ http://docs.ctags.io/en/latest/index.html
 brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags
 ```
-
-#### [中文版 README](./README_cn.md) by [@EvanMeek](https://github.com/EvanMeek)
-
-Please **DO NOT** just copy this config without really looking at it! Please, at least, read this README file!
 
 ## After Installation, You Need To:
 
