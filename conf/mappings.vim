@@ -1,6 +1,8 @@
 " ===
 " === Basic Mappings
 " ===
+map ; :
+
 " Save & quit
 "map Q :q<CR>
 "map S :w<CR>

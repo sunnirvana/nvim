@@ -143,7 +143,6 @@ autocmd TermOpen term://* startinsert
 " ===
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
-map ; :
 source ~/.config/nvim/conf/mappings.vim
 
 " ===
@@ -393,6 +392,7 @@ let g:NERDTrimTrailingWhitespace=1
 " ===
 source ~/.config/nvim/conf/coc.vim
 
+
 " ===
 " === indentLine
 " ===
@@ -439,7 +439,7 @@ let g:mkdp_page_title = '「${name}」'
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
-" let g:python_slow_sync = 0
+"let g:python_slow_sync = 0
 
 
 " ===

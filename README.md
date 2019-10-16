@@ -12,8 +12,8 @@ http://docs.ctags.io/en/latest/index.html
 
 http://docs.ctags.io/en/latest/autotools.html
 
-```shell
-# Debian prerequisites
+````shell
+- Debian prerequisites
 sudo apt install \
     gcc make \
     pkg-config autoconf automake \
@@ -33,7 +33,7 @@ sudo dnf install \
     libyaml-devel \
     libxml2-devel
 
-# Installation
+- Installation
 ./autogen.sh
 ./configure --prefix=/where/you/want # defaults to /usr/local
 make
@@ -48,6 +48,14 @@ make install # may require extra privileges depending on where to install
 # Mac
 brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags
+```
+
+### COC configuration
+
+- Install language server
+
+```shell
+npm i -g bash-language-server
 ```
 
 ## After Installation, You Need To:
@@ -305,3 +313,4 @@ Press `Space` + `a` to calculate the equation in the current line
 |  _  |  __/ | | (_) |
 |_| |_|\___|_|_|\___/
 ```
+````

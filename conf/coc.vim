@@ -31,11 +31,34 @@ let g:coc_global_extensions =[
             \'coc-stylelint',
             \'coc-yaml',
             \'coc-template',
-            \'coc-tabnine',
             \'coc-marketplace',
             \'coc-gitignore',
             \'coc-yank'
             \]
+
+" let g:coc_global_extensions =[
+            " \'coc-html',
+            " \'coc-css',
+            " \'coc-snippets',
+            " \'coc-prettier',
+            " \'coc-eslint',
+            " \'coc-emmet',
+            " \'coc-tsserver',
+            " \'coc-pairs',
+            " \'coc-json',
+            " \'coc-python',
+            " \'coc-highlight',
+            " \'coc-git',
+            " \'coc-emoji',
+            " \'coc-lists',
+            " \'coc-stylelint',
+            " \'coc-yaml',
+            " \'coc-template',
+            " \'coc-tabnine',
+            " \'coc-marketplace',
+            " \'coc-gitignore',
+            " \'coc-yank'
+            " \]
 
 augroup MyAutoCmd
   autocmd!
