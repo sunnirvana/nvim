@@ -194,6 +194,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'liuchengxu/eleline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'liuchengxu/space-vim-theme'
+Plug 'joshdick/onedark.vim'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'bagrat/vim-buffet'
@@ -310,10 +311,11 @@ source ~/.config/nvim/_machine_specific.vim
 " === Dress up my vim
 " ===
 set termguicolors     " enable true colors support
-let g:space_vim_transp_bg = 1
+" let g:space_vim_transp_bg = 1
 "let g:vim_monokai_tasty_italic = 1
 "set background=dark
-colorscheme space_vim_theme
+" colorscheme space_vim_theme
+colorscheme onedark
 "colorscheme vim-monokai-tasty
 
 " ===================== Start of Plugin Settings =====================
