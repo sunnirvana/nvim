@@ -108,7 +108,7 @@ Since the `i` key has been mapped to `k`, every command (combination) that invol
 #### 1.2 Remapped Cursor Movement
 
 | Command    | What it does                                              | Equivalent (QWERTY) |
-| ---------- | --------------------------------------------------------- | ------------------- |
+|------------|-----------------------------------------------------------|---------------------|
 | `u`        | Cursor up a terminal line                                 | `k`                 |
 | `e`        | Cursor down a terminal line                               | `j`                 |
 | `n`        | Cursor left                                               | `h`                 |
@@ -122,15 +122,13 @@ Since the `i` key has been mapped to `k`, every command (combination) that invol
 | `h`        | Move to the end of this word                              | `e`                 |
 
 #### 1.3 Remapped Editor Commands
-
 | Command | What it does |
-| ------- | ------------ |
+|---------|--------------|
 | `l`     | undo         |
 
 #### 1.4 Some Other Commands to Know
-
 | Command | What it does                          |
-| ------- | ------------------------------------- |
+|---------|---------------------------------------|
 | `<C-i>` | Go to the next cursor position        |
 | `<C-o>` | Go to the previous cursor position    |
 | `<C-a>` | Increase the number under cursor by 1 |
@@ -268,6 +266,9 @@ press: `cs'"`:
 ```
 "string"
 ```
+
+#### fzf-gitignore
+Press `Space` `g` `i` to create a `.gitignore` file
 
 #### vim-calc
 

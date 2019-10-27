@@ -11,10 +11,10 @@ map ; :
 nnoremap U <C-r>
 
 " Open the vimrc file anytime
-map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open Startify
-map <LEADER>st :Startify<CR>
+noremap <LEADER>st :Startify<CR>
 
 " Copy to system clipboard
 if has('macunix') "Mac
@@ -24,15 +24,18 @@ elseif has('unix') "Linux
 endif
 
 " Search
-map <LEADER><CR> :nohlsearch<CR>
+noremap <LEADER><CR> :nohlsearch<CR>
 noremap - nzz
 noremap = Nzz
 
 " Adjacent duplicate words
-map <LEADER>dw /\(\<\w\+\>\)\_s*\1
+noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
+
+" Space to Tab
+noremap <LEADER>tt :%s/    /\t/g
 
 " Folding
-map <silent> <LEADER>o za
+noremap <silent> <LEADER>o za
 
 " Disable ex-mode
 :nnoremap Q <Nop>
@@ -43,33 +46,36 @@ noremap <silent> H ^
 " I key: go to the end of the line
 noremap <silent> L $
 
+" Faster in-line navigation
+noremap W 5w
+noremap B 5b
 
 " ===
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-map <LEADER>w <C-w>w
-map <LEADER>h <C-w>h
-map <LEADER>j <C-w>j
-map <LEADER>k <C-w>k
-map <LEADER>l <C-w>l
+noremap <LEADER>w <C-w>w
+noremap <LEADER>h <C-w>h
+noremap <LEADER>j <C-w>j
+noremap <LEADER>k <C-w>k
+noremap <LEADER>l <C-w>l
 
-" Disabling the default s key
+" Disable the default s key
 noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map sj :set splitbelow<CR>:split<CR>
-map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map sl :set splitright<CR>:vsplit<CR>
+noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sj :set splitbelow<CR>:split<CR>
+noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-" map <C-up> :res +5<CR>
-" map <C-down> :res -5<CR>
-" map <C-up> :vertical resize-5<CR>
-" map <C-down> :vertical resize+5<CR>
-" map <C-left> :vertical resize-5<CR>
-" map <C-right> :vertical resize+5<CR>
+" noremap <C-up> :res +5<CR>
+" noremap <C-down> :res -5<CR>
+" noremap <C-up> :vertical resize-5<CR>
+" noremap <C-down> :vertical resize+5<CR>
+" noremap <C-left> :vertical resize-5<CR>
+" noremap <C-right> :vertical resize+5<CR>
 
 " Place the two screens up and down
 noremap spj <C-w>t<C-w>K
@@ -80,19 +86,23 @@ noremap sph <C-w>t<C-w>H
 noremap srk <C-w>b<C-w>K
 noremap srh <C-w>b<C-w>H
 
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q <C-w>j:q<CR>
+
+
 " ===
 " === Tab management
 " ===
 " Create a new tab with tu
-map tt :tabe<CR>
+noremap tt :tabe<CR>
 " Move around tabs with tn and ti
-map tp :-tabnext<CR>
-map tn :+tabnext<CR>
+noremap tp :-tabnext<CR>
+noremap tn :+tabnext<CR>
 " Move the tabs with tmn and tmi
-map tmp :-tabmove<CR>
-map tmn :+tabmove<CR>
+noremap tmp :-tabmove<CR>
+noremap tmn :+tabmove<CR>
 " Close the tab
-map tx :tabclose<CR>
+noremap tx :tabclose<CR>
 
 
 " insert keymap like emacs
