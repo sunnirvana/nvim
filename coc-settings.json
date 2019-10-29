@@ -43,8 +43,8 @@
     //git
     "git.enableGutters": true,
     "git.branchCharacter":"\uf408",
-    "git.addGlameToBufferVar": false,
-    "git.addGlameToVirtualText": false,
+    "git.addGBlameToBufferVar": false,
+    "git.addGBlameToVirtualText": false,
     "git.virtualTextPrefix": " ❯❯❯ ",
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",

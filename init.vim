@@ -195,7 +195,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'liuchengxu/eleline.vim'
 Plug 'bling/vim-bufferline'
-Plug 'liuchengxu/space-vim-theme'
+" Plug 'liuchengxu/space-vim-theme'
 Plug 'joshdick/onedark.vim'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'kien/rainbow_parentheses.vim'
@@ -207,13 +207,15 @@ Plug 'ajmwagar/vim-deus'
 " Genreal Highlighter
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
+
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 "Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'francoiscabrol/ranger.vim'
 
 " Taglist
@@ -224,6 +226,7 @@ Plug 'dense-analysis/ale'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -231,22 +234,14 @@ Plug 'honza/vim-snippets'
 " Undo Tree
 Plug 'mbbill/undotree'
 
-" Other visual enhancement
-"Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'itchyny/vim-cursorword'
-"Plug 'tmhedberg/SimpylFold'
-Plug 'Yggdroot/indentLine'
-Plug 'mhinz/vim-startify'
-
 " Git
-Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-fugitive' " gv dependency
 Plug 'junegunn/gv.vim' " gv (normal) to show git log
 "Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-signify'
-Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+
 " Tex
 " Plug 'lervag/vimtex'
 
@@ -279,9 +274,19 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
 "Plug 'vimwiki/vimwiki'
 
-" For general writing
-Plug 'reedes/vim-wordy'
-Plug 'ron89/thesaurus_query.vim'
+" Editor Enhancement
+Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'AndrewRadev/switch.vim' " gs to switch
+Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
+Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
+Plug 'easymotion/vim-easymotion'
+
+" Formatter
+Plug 'Chiel92/vim-autoformat'
 
 " Code management
 Plug 'psf/black'
@@ -293,18 +298,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
-Plug 'AndrewRadev/switch.vim' " gs to switch true <=> false
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
-Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
-Plug 'tpope/vim-capslock'   " Ctrl+L (insert) to toggle capslock
-Plug 'easymotion/vim-easymotion'
-
-" Formatter
-Plug 'Chiel92/vim-autoformat'
 
 " For general writing
 "Plug 'reedes/vim-wordy'
@@ -375,7 +368,14 @@ colorscheme deus
 " ===
 " === Airline
 " ===
-source ~/.config/nvim/conf/airline.vim
+" source ~/.config/nvim/conf/airline.vim
+
+
+" ===
+" === Eleline
+" ===
+set laststatus=2
+let g:eleline_powerline_fonts = 1
 
 " ===
 " === NERDTree
@@ -404,7 +404,7 @@ let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
 nnoremap <LEADER>gf :GitGutterFold<CR>
-nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>gp :GitGutterPreviewHunk<CR>
 nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
 nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 
@@ -864,3 +864,5 @@ if has_machine_specific_file == 0
     exec "e ~/.config/nvim/_machine_specific.vim"
 endif
 
+" Testing my plugin
+" set runtimepath+=~/.config/nvim/plugged/vim-amake
