@@ -157,7 +157,6 @@ source ~/.config/nvim/conf/mappings.vim
 " ===
 source ~/.config/nvim/conf/snippits.vim
 
-
 " ===
 " === Other useful stuff
 " ===
@@ -166,17 +165,17 @@ source ~/.config/nvim/conf/snippits.vim
 noremap <LEADER>/ :set splitbelow<CR>:sp<CR>:term<CR>
 
 " Press space twice to jump to the next '<++>' and edit it
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
+" noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
 
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
-noremap <C-x> ea<C-x>s
-inoremap <C-x> <Esc>ea<C-x>s
+" noremap <C-x> ea<C-x>s
+" inoremap <C-x> <Esc>ea<C-x>s
 
 " Press ` to change case (instead of ~)
 noremap ` ~
 
-noremap <C-c> zz
+"noremap <C-c> zz
 
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
@@ -246,8 +245,8 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'lervag/vimtex'
 
 " CSharp
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
+" Plug 'OmniSharp/omnisharp-vim'
+" Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -473,11 +472,11 @@ autocmd WinEnter * silent! unmap <LEADER>ig
 " ===
 " === some error checking
 " ===
-let g:ale_virtualtext_cursor = 1
-let g:ale_linters = {
-            \ 'cs': ['OmniSharp'],
-            \ 'go': ['vim-go']
-            \}
+let g:ale_virtualtext_cursor = 0
+" let g:ale_linters = {
+            " \ 'cs': ['OmniSharp'],
+            " \ 'go': ['vim-go']
+            " \}
 
 
 " ===
@@ -653,29 +652,30 @@ nnoremap R :Ranger<CR>
 " ===
 " === fzf-gitignore
 " ===
-noremap <LEADER>gi :FzfGitignore<CR>
+" noremap <LEADER>gi :FzfGitignore<CR>
 
 
 " ===
 " === Ultisnips
 " ===
-let g:tex_flavor = "latex"
+let g:tex_flavor = "plain"
 inoremap <c-n> <nop>
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-e>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/snippets/', 'UltiSnips']
+let g:UltiSnipsEditSplit="vertical"
 
 
 " ===
 " === vimtex
 " ===
 "let g:vimtex_view_method = ''
-let g:vimtex_view_general_viewer = 'llpp'
-let g:vimtex_mappings_enabled = 0
-let g:vimtex_text_obj_enabled = 0
-let g:vimtex_motion_enabled = 0
-let maplocalleader=' '
+"let g:vimtex_view_general_viewer = 'llpp'
+"let g:vimtex_mappings_enabled = 0
+"let g:vimtex_text_obj_enabled = 0
+"let g:vimtex_motion_enabled = 0
+"let maplocalleader=' '
 
 
 " ===
@@ -752,6 +752,11 @@ let g:go_highlight_variable_declarations     = 0
 
 
 " ===
+" === Black
+" ===
+nnoremap \b :Black<CR>
+
+" ===
 " === AutoFormat
 " ===
 nnoremap \f :Autoformat<CR>
@@ -759,45 +764,45 @@ nnoremap \f :Autoformat<CR>
 " ===
 " === OmniSharp
 " ===
-let g:OmniSharp_typeLookupInPreview = 1
-let g:omnicomplete_fetch_full_documentation = 1
+" let g:OmniSharp_typeLookupInPreview = 1
+" let g:omnicomplete_fetch_full_documentation = 1
 
-let g:OmniSharp_server_use_mono = 1
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
-let g:OmniSharp_selector_ui = 'ctrlp'
+" let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_server_stdio = 1
+" let g:OmniSharp_highlight_types = 2
+" let g:OmniSharp_selector_ui = 'ctrlp'
 
-autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
-autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
-autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
-autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
-autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
+" autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
+" autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+" autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
+" autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
+" autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
-sign define OmniSharpCodeActions text=�
+" sign define OmniSharpCodeActions text=�
 
-augroup OSCountCodeActions
-    autocmd!
-    autocmd FileType cs set signcolumn=yes
-    autocmd CursorHold *.cs call OSCountCodeActions()
-augroup END
+" augroup OSCountCodeActions
+    " autocmd!
+    " autocmd FileType cs set signcolumn=yes
+    " autocmd CursorHold *.cs call OSCountCodeActions()
+" augroup END
 
-function! OSCountCodeActions() abort
-    if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
-    if !OmniSharp#IsServerRunning() | return | endif
-    let opts = {
-                \ 'CallbackCount': function('s:CBReturnCount'),
-                \ 'CallbackCleanup': {-> execute('sign unplace 99')}
-                \}
-    call OmniSharp#CountCodeActions(opts)
-endfunction
+" function! OSCountCodeActions() abort
+    " if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
+    " if !OmniSharp#IsServerRunning() | return | endif
+    " let opts = {
+                " \ 'CallbackCount': function('s:CBReturnCount'),
+                " \ 'CallbackCleanup': {-> execute('sign unplace 99')}
+                " \}
+    " call OmniSharp#CountCodeActions(opts)
+" endfunction
 
-function! s:CBReturnCount(count) abort
-    if a:count
-        let l = getpos('.')[1]
-        let f = expand('%:p')
-        execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
-    endif
-endfunction
+" function! s:CBReturnCount(count) abort
+    " if a:count
+        " let l = getpos('.')[1]
+        " let f = expand('%:p')
+        " execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
+    " endif
+" endfunction
 
 
 " ===
