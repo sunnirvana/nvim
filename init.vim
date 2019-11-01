@@ -128,6 +128,16 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" Set different config for each file type
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ai
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sw=4
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ts=4
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sts=4
+autocmd FileType javascript,html,css,xml set ai
+autocmd FileType javascript,html,css,xml set sw=2
+autocmd FileType javascript,html,css,xml set ts=2
+autocmd FileType javascript,html,css,xml set sts=2
+
 " ===
 " === Buffet
 " ===
