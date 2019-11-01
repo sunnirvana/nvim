@@ -42,6 +42,7 @@ autocmd! bufwritepost .vimrc source %
 " ===
 " === Editor behavior
 " ===
+set hidden
 set number
 "set relativenumber
 set cursorline
@@ -57,7 +58,7 @@ set scrolloff=7 " keep 5 lines offset to the bottom and top
 set timeout ttimeout
 set timeoutlen=500
 set ttimeoutlen=10
-set updatetime=100
+set updatetime=300
 "set notimeout
 set viewoptions=cursor,folds,slash,unix
 set wrap
@@ -106,6 +107,7 @@ exec "nohlsearch"
 set ignorecase
 set smartcase
 set shortmess+=c
+set signcolumn=yes
 " set inccommand=split
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
@@ -380,19 +382,19 @@ let g:eleline_powerline_fonts = 1
 " === NERDTree
 " ===
 noremap tt :NERDTreeToggle<CR>
-let NERDTreeMapOpenExpl = ""
-let NERDTreeMapUpdir = "N"
-let NERDTreeMapUpdirKeepOpen = "n"
-let NERDTreeMapOpenSplit = ""
-let NERDTreeMapOpenVSplit = "I"
-let NERDTreeMapActivateNode = "i"
-let NERDTreeMapOpenInTab = "o"
-let NERDTreeMapOpenInTabSilent = "O"
-let NERDTreeMapPreview = ""
-let NERDTreeMapCloseDir = ""
-let NERDTreeMapChangeRoot = "l"
-let NERDTreeMapMenu = ","
-let NERDTreeMapToggleHidden = "zh"
+" let NERDTreeMapOpenExpl = ""
+" let NERDTreeMapUpdir = "N"
+" let NERDTreeMapUpdirKeepOpen = "n"
+" let NERDTreeMapOpenSplit = ""
+" let NERDTreeMapOpenVSplit = "I"
+" let NERDTreeMapActivateNode = "i"
+" let NERDTreeMapOpenInTab = "o"
+" let NERDTreeMapOpenInTabSilent = ""
+" let NERDTreeMapPreview = ""
+" let NERDTreeMapCloseDir = ""
+" let NERDTreeMapChangeRoot = "l"
+" let NERDTreeMapMenu = ","
+" let NERDTreeMapToggleHidden = "zh"
 
 
 " ==
@@ -402,10 +404,10 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
-nnoremap <LEADER>gf :GitGutterFold<CR>
-nnoremap <LEADER>gp :GitGutterPreviewHunk<CR>
-nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
-nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+" nnoremap <LEADER>gf :GitGutterFold<CR>
+" nnoremap <LEADER>gp :GitGutterPreviewHunk<CR>
+" nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+" nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 
 
 " ==
