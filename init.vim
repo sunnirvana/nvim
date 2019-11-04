@@ -215,6 +215,9 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'ajmwagar/vim-deus'
 
+" Syntax
+Plug 'sheerun/vim-polyglot'
+
 " Genreal Highlighter
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
@@ -295,15 +298,13 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or 
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
+Plug 'Yggdroot/indentLine' " Indent line
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
 
 " Code management
 Plug 'psf/black'
-
-" Bookmarks
-Plug 'kshenoy/vim-signature'
 
 " Other useful utilities
 Plug 'Shougo/neocomplete.vim'
@@ -474,11 +475,14 @@ source ~/.config/nvim/conf/coc.vim
 " ===
 " === indentLine
 " ===
+let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
-let g:indentLine_color_term = 238
-let g:indentLine_color_gui = '#333333'
-silent! unmap <LEADER>ig
-autocmd WinEnter * silent! unmap <LEADER>ig
+" let g:indentLine_bgcolor_term = 202
+" let g:indentLine_bgcolor_gui = '#FF5F00'
+" " let g:indentLine_color_term = 238
+" " let g:indentLine_color_gui = '#333333'
+" silent! unmap <LEADER>ig
+" autocmd WinEnter * silent! unmap <LEADER>ig
 
 
 " ===
@@ -605,7 +609,7 @@ let g:startify_lists = [
 " ===
 " === Far.vim
 " ===
-nnoremap <silent> <LEADER>f :F  %<left><left>
+" nnoremap <silent> <LEADER>f :F  %<left><left>
 
 
 " ===
@@ -658,7 +662,7 @@ source ~/.config/nvim/conf/vista.vim
 " ===
 " === Ranger.vim
 " ===
-nnoremap R :Ranger<CR>
+nnoremap rr :Ranger<CR>
 
 
 " ===
@@ -694,6 +698,7 @@ let g:UltiSnipsEditSplit="vertical"
 " === FlyGrep
 " ===
 " nnoremap <c-f> :FlyGrep<CR>
+nnoremap <leader>f :FlyGrep<CR>
 
 
 " ===
@@ -856,17 +861,18 @@ nnoremap ,w :Clap window<CR>
 " === vim-easymotion
 " ===
 let g:EasyMotion_smartcase = 1
+nmap ss <Plug>(easymotion-s2)
 " 'f{char} to move to {char}
-map 'f <Plug>(easymotion-bd-f)
-nmap 'f <Plug>(easymotion-overwin-f)
-" 's{char}{char} to move to {char}{char}
-nmap 's <Plug>(easymotion-overwin-f2)
-" Move to line
-map 'l <Plug>(easymotion-bd-jk)
-nmap 'l <Plug>(easymotion-overwin-line)
-" Move to word
-map  'w <Plug>(easymotion-bd-w)
-nmap 'w <Plug>(easymotion-overwin-w)
+" map 'f <Plug>(easymotion-bd-f)
+" nmap 'f <Plug>(easymotion-overwin-f)
+" " 's{char}{char} to move to {char}{char}
+" nmap 's <Plug>(easymotion-overwin-f2)
+" " Move to line
+" map 'l <Plug>(easymotion-bd-jk)
+" nmap 'l <Plug>(easymotion-overwin-line)
+" " Move to word
+" map  'w <Plug>(easymotion-bd-w)
+" nmap 'w <Plug>(easymotion-overwin-w)
 
 
 " ===================== End of Plugin Settings =====================
