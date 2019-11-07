@@ -54,11 +54,11 @@ noremap B 5b
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>h <C-w>h
-noremap <LEADER>j <C-w>j
-noremap <LEADER>k <C-w>k
-noremap <LEADER>l <C-w>l
+" noremap <LEADER>w <C-w>w
+" noremap <LEADER>h <C-w>h
+" noremap <LEADER>j <C-w>j
+" noremap <LEADER>k <C-w>k
+" noremap <LEADER>l <C-w>l
 
 " Disable the default s key
 noremap s <nop>
@@ -68,6 +68,27 @@ noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 noremap sj :set splitbelow<CR>:split<CR>
 noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap sl :set splitright<CR>:vsplit<CR>
+
+" Maximize window and return to previous split structure
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+" nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
+" nnoremap <C-W>O :call MaximizeToggle()<CR>
+
+function! MaximizeToggle()
+  if exists("s:maximize_session")
+    exec "source " . s:maximize_session
+    call delete(s:maximize_session)
+    unlet s:maximize_session
+    let &hidden=s:maximize_hidden_save
+    unlet s:maximize_hidden_save
+  else
+    let s:maximize_hidden_save = &hidden
+    let s:maximize_session = tempname()
+    set hidden
+    exec "mksession! " . s:maximize_session
+    only
+  endif
+endfunction
 
 " Resize splits with arrow keys
 " noremap <C-up> :res +5<CR>
@@ -85,9 +106,6 @@ noremap sph <C-w>t<C-w>H
 " Rotate screens
 noremap srk <C-w>b<C-w>K
 noremap srh <C-w>b<C-w>H
-
-" Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
 
 
 " ===
@@ -127,16 +145,21 @@ cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 
+"insert a newline
+inoremap <C-O> <Esc>o
+
+" ===
+" === Buffer management
+" ===
 " Write buffer (save)
 noremap <LEADER>w :w<CR>
 imap <C-S> <esc>:w<CR>
 imap <C-Q> <esc>:wq<CR>
 
-"insert a newline
-inoremap <C-O> <Esc>o
-
+"switch buffer
 nnoremap  ]b :bp<CR>
 nnoremap  [b :bn<CR>
+
 "delete buffer
 nnoremap <C-x>  :bd<CR>
 
@@ -185,13 +208,13 @@ nmap <LEADER>9 <Plug>BuffetSwitch(9)
 nmap <LEADER>0 <Plug>BuffetSwitch(10)
 
 " Improve scroll, credits: https://github.com/Shougo
-nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
-	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
-noremap <expr> <C-f> max([winheight(0) - 2, 1])
-	\ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1])
-	\ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
-noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
-noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
+" nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
+	" \ 'zt' : (winline() == 1) ? 'zb' : 'zz'
+" noremap <expr> <C-f> max([winheight(0) - 2, 1])
+	" \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
+" noremap <expr> <C-b> max([winheight(0) - 2, 1])
+	" \ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
+" noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
+" noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 

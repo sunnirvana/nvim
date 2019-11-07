@@ -299,6 +299,8 @@ Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine' " Indent line
+Plug 'tpope/vim-repeat' " Enhance the dot (.) to repeat something
+Plug 'junegunn/vim-peekaboo' " \" / \@ / CTRL-R to see register list
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'

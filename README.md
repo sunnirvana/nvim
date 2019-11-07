@@ -1,18 +1,20 @@
 # My NeoVim Config
 
-## fzf
+## Install dependencies
+
+#### fzf
 
 https://github.com/junegunn/fzf
 
-## ctags
+#### ctags
 
 http://docs.ctags.io/en/latest/index.html
 
-### Linux installation
+- Linux installation
 
 http://docs.ctags.io/en/latest/autotools.html
 
-````shell
+```shell
 - Debian prerequisites
 sudo apt install \
     gcc make \
@@ -40,7 +42,7 @@ make
 make install # may require extra privileges depending on where to install
 ```
 
-### Mac installation
+- Mac installation
 
 注意 Mac 上要安装最新的 ctags ，不然会有 ctags 不能运行的错误，extras -> extra
 
@@ -50,7 +52,7 @@ brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags
 ```
 
-### COC configuration
+#### COC configuration
 
 - Install language server
 
@@ -95,44 +97,22 @@ Python:
 
 #### 1.1 The Most Basics
 
-**`k`** : to switch to **`INSERT`** : mode, equals to key `i`
+| Command | What it does                    |
+| ------- | ------------------------------- |
+| `k`     | Cursor up a terminal line       |
+| `j`     | Cursor down a terminal line     |
+| `h`     | Cursor left                     |
+| `l`     | Cursor right                    |
+| `Home`  | Cursor to the start of the line |
+| `$`     | Cursor to the end of the line   |
 
-**`Q`** : quit current vim window, equals to command `:q`
+#### 1.2 Some Other Commands to Know
 
-**`S`** : save the current file, equals to command `:w`
-
-**_IMPORTANT_**
-
-Since the `i` key has been mapped to `k`, every command (combination) that involves `i` should use `k` instead (for example, `ciw` should be `ckw`).
-
-#### 1.2 Remapped Cursor Movement
-
-| Command    | What it does                                              | Equivalent (QWERTY) |
-|------------|-----------------------------------------------------------|---------------------|
-| `u`        | Cursor up a terminal line                                 | `k`                 |
-| `e`        | Cursor down a terminal line                               | `j`                 |
-| `n`        | Cursor left                                               | `h`                 |
-| `i`        | Cursor right                                              | `l`                 |
-| `U`        | Cursor up 5 terminal lines                                | `5k`                |
-| `E`        | Cursor down 5 terminal lines                              | `5j`                |
-| `N`        | Cursor to the start of the line                           | `0`                 |
-| `I`        | Cursor to the end of the line                             | `$`                 |
-| `Ctrl` `u` | Move the view port up 5 lines without moving the cursor   | `Ctrl` `y`          |
-| `Ctrl` `e` | Move the view port down 5 lines without moving the cursor | `Ctrl` `e`          |
-| `h`        | Move to the end of this word                              | `e`                 |
-
-#### 1.3 Remapped Editor Commands
-| Command | What it does |
-|---------|--------------|
-| `l`     | undo         |
-
-#### 1.4 Some Other Commands to Know
 | Command | What it does                          |
-|---------|---------------------------------------|
+| ------- | ------------------------------------- |
 | `<C-i>` | Go to the next cursor position        |
 | `<C-o>` | Go to the previous cursor position    |
 | `<C-a>` | Increase the number under cursor by 1 |
-| `<C-x>` | Decrease the number under cursor by 1 |
 | `z=`    | Show spell suggestions                |
 | `H`     | Joins the current line with the next  |
 | `<`     | Un-indent                             |
@@ -144,28 +124,30 @@ Since the `i` key has been mapped to `k`, every command (combination) that invol
 
 | Command | What it does                                                                |
 | ------- | --------------------------------------------------------------------------- |
-| `su`    | Create a new horizontal split screen and place it above the current window  |
-| `se`    | Create a new horizontal split screen and place it below the current window  |
-| `sn`    | Create a new vertical split screen and place it left to the current window  |
-| `si`    | Create a new vertical split screen and place it right to the current window |
-| `sv`    | Set the two splits to be vertical                                           |
-| `sh`    | Set the two splits to be horizontal                                         |
-| `srv`   | Rotate splits and arrange splits vertically                                 |
+| `sj`    | Create a new horizontal split screen and place it above the current window  |
+| `sk`    | Create a new horizontal split screen and place it below the current window  |
+| `sl`    | Create a new vertical split screen and place it left to the current window  |
+| `sh`    | Create a new vertical split screen and place it right to the current window |
+| `spj`   | Set the two splits to be vertical                                           |
+| `sph`   | Set the two splits to be horizontal                                         |
+| `srk`   | Rotate splits and arrange splits vertically                                 |
 | `srh`   | Rotate splits and arrange splits horizontally                               |
 
 #### 2.2 Moving the Cursor Between Different Windows
 
 | Shortcut        | Action                         |
 | --------------- | ------------------------------ |
-| `<SPACE>` + `w` | Move cursor to the next window |
-| `<SPACE>` + `n` | Move cursor one window left    |
-| `<SPACE>` + `i` | Move cursor one window right   |
-| `<SPACE>` + `u` | Move cursor one window up      |
-| `<SPACE>` + `e` | Move cursor one window down    |
+| `<CTRL>w` + `w` | Move cursor to the next window |
+| `<CTRL>w` + `h` | Move cursor one window left    |
+| `<CTRL>w` + `l` | Move cursor one window right   |
+| `<CTRL>w` + `u` | Move cursor one window up      |
+| `<CTRL>w` + `j` | Move cursor one window down    |
 
-#### 2.3 Resizing Different Windows
+#### 2.3 Maximize Current Window And Return
 
-Use the arrow keys to resize the current window.
+| Shortcut        | Action            |
+| --------------- | ----------------- |
+| `<CTRL>w` + `o` | Toggle Maximizing |
 
 ## Plugins
 
@@ -196,11 +178,14 @@ Press `q` to leave Vista.vim
 
 #### FZF (the fuzzy file finder)
 
-| Shortcut   | Action           |
-| ---------- | ---------------- |
-| `Ctrl` `p` | Active FZF       |
-| `Ctrl` `u` | Move up 1 item   |
-| `Ctrl` `e` | Move down 1 item |
+':FZF', search in current path
+':FZF ..', search in parent path
+
+| Shortcut   | Action                    |
+| ---------- | ------------------------- |
+| `Ctrl` `p` | Active FZF (current path) |
+| `Ctrl` `u` | Move up 1 item            |
+| `Ctrl` `e` | Move down 1 item          |
 
 #### Undotree
 
@@ -268,6 +253,7 @@ press: `cs'"`:
 ```
 
 #### fzf-gitignore
+
 Press `Space` `g` `i` to create a `.gitignore` file
 
 #### vim-calc
@@ -314,4 +300,7 @@ Press `Space` + `a` to calculate the equation in the current line
 |  _  |  __/ | | (_) |
 |_| |_|\___|_|_|\___/
 ```
-````
+
+```
+
+```
