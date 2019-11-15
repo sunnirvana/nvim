@@ -424,6 +424,12 @@ autocmd BufWritePost * GitGutter
 
 
 " ==
+" == Vim-json
+" ==
+set conceallevel=0  "do not conceal quotes
+
+
+" ==
 " == NERDTree-git
 " ==
 let g:NERDTreeIndicatorMapCustom = {
