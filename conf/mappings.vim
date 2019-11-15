@@ -217,4 +217,17 @@ nmap <LEADER>0 <Plug>BuffetSwitch(10)
 " noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 " noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
+" Vim-json qoutes concealing
+" nmap <LEADER>cl :set conceallevel=2<CR>
+" nmap <LEADER>ncl :set conceallevel=0<CR>
+nnoremap <LEADER>nc :call QuoteConcealToggle()<CR>
+" nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
+" nnoremap <C-W>O :call MaximizeToggle()<CR>
 
+function! QuoteConcealToggle()
+  if &conceallevel == 2
+    set conceallevel=0
+  else
+    set conceallevel=2
+  endif
+endfunction

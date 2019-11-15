@@ -424,12 +424,6 @@ autocmd BufWritePost * GitGutter
 
 
 " ==
-" == Vim-json
-" ==
-set conceallevel=0  "do not conceal quotes
-
-
-" ==
 " == NERDTree-git
 " ==
 let g:NERDTreeIndicatorMapCustom = {
@@ -882,6 +876,10 @@ nmap ss <Plug>(easymotion-s2)
 " map  'w <Plug>(easymotion-bd-w)
 " nmap 'w <Plug>(easymotion-overwin-w)
 
+" ==
+" == Vim-json
+" ==
+" set conceallevel=0  "do not conceal quotes
 
 " ===================== End of Plugin Settings =====================
 
