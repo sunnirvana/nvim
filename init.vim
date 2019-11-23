@@ -293,7 +293,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 Plug 'AndrewRadev/switch.vim' " gs to switch
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'tpope/vim-surround' " 1. ysiw' to wrap the word with ''; 2. cs'` to change 'word' to `word` 3. ds' to change 'word' to word
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock

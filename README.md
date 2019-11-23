@@ -234,7 +234,7 @@ To add surround (`string` -> `"string"`):
 string
 ```
 
-press: `yskw'`:
+press: `ysiw'`:
 
 ```
 'string'

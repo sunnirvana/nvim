@@ -1,6 +1,11 @@
 " ===
 " === Basic Mappings
 " ===
+
+" Disable <F1>
+map <F1> <Esc>
+imap <F1> <Esc>
+
 map ; :
 
 " Save & quit
