@@ -877,9 +877,15 @@ nmap ss <Plug>(easymotion-s2)
 " nmap 'w <Plug>(easymotion-overwin-w)
 
 " ==
-" == Vim-json
+" == vim-json
 " ==
 " set conceallevel=0  "do not conceal quotes
+
+" ==
+" == vim-peekaboo
+" ==
+let g:peekaboo_window = 'vert bo 80new'
+let g:peekaboo_compact = 0
 
 " ===================== End of Plugin Settings =====================
 
