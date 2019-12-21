@@ -2,7 +2,8 @@
 
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 
+let g:coc_global_extensions = ['coc-python',
+            \'coc-vetur',
             \'coc-vimlsp',
             \'coc-emmet',
             \'coc-html',

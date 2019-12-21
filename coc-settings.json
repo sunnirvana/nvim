@@ -61,7 +61,7 @@
     //tslint
     "tslint.autoFixOnSave": true,
     //prettier
-    "coc.preferences.formatOnSaveFiletypes": ["css","markdown"],
+    "coc.preferences.formatOnSaveFiletypes": ["css","markdown", "python"],
     "prettier.statusItemText": "ⓟ ",
     "prettier.eslintIntegration": true,
     "prettier.tslintIntegration": true,
@@ -78,6 +78,16 @@
     "eslint.autoFixOnSave": true,
     // Language Server
     "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "initializationOptions": {
+               "cache": {
+                 "directory": "/tmp/ccls"
+               }
+             }
+        },
         "bash": {
             "command": "bash-language-server",
             "args": ["start"],

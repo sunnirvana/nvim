@@ -12,6 +12,9 @@
 " === Auto load for first time uses
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !python3 -m pip install pynvim neovim black
+    silent !npm install vue-language-server -g
+    silent !npm install bash-language-server -g
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -133,10 +136,11 @@ autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ai
 autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sw=4
 autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ts=4
 autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sts=4
-autocmd FileType javascript,html,css,xml set ai
-autocmd FileType javascript,html,css,xml set sw=2
-autocmd FileType javascript,html,css,xml set ts=2
-autocmd FileType javascript,html,css,xml set sts=2
+autocmd FileType javascript,html,css,xml,vue set ai
+autocmd FileType javascript,html,css,xml,vue set sw=2
+autocmd FileType javascript,html,css,xml,vue set ts=2
+autocmd FileType javascript,html,css,xml,vue set sts=2
+autocmd FileType vue syntax sync fromstart
 
 " ===
 " === Buffet
@@ -217,6 +221,8 @@ Plug 'ajmwagar/vim-deus'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
+Plug 'posva/vim-vue'
+Plug 'scrooloose/syntastic'
 
 " Genreal Highlighter
 Plug 'jaxbot/semantic-highlight.vim'
@@ -886,6 +892,13 @@ nmap ss <Plug>(easymotion-s2)
 " ==
 let g:peekaboo_window = 'vert bo 80new'
 let g:peekaboo_compact = 0
+
+
+" ==
+" == scrooloose/syntastic
+" ==
+let g:syntastic_javascript_check = ['eslint']
+
 
 " ===================== End of Plugin Settings =====================
 
