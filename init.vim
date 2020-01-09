@@ -152,7 +152,23 @@ source ~/.config/nvim/conf/buffet.vim
 " ===
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
-"tnoremap <C-N> <C-\><C-N>:q<CR>
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
 
 " ===
 " === Basic Mappings
@@ -243,6 +259,7 @@ Plug 'liuchengxu/vista.vim'
 
 " Error checking
 Plug 'dense-analysis/ale'
+Plug 'fszymanski/fzf-quickfix', {'on': 'Quickfix'}
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -302,11 +319,16 @@ Plug 'AndrewRadev/switch.vim' " gs to switch
 Plug 'tpope/vim-surround' " 1. ysiw' to wrap the word with ''; 2. cs'` to change 'word' to `word` 3. ds' to change 'word' to word
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph, 
 Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine' " Indent line
+Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-repeat' " Enhance the dot (.) to repeat something
 Plug 'junegunn/vim-peekaboo' " \" / \@ / CTRL-R to see register list
+
+" Input Method Autoswitch
+Plug 'rlue/vim-barbaric'
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
@@ -320,6 +342,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 
 " For general writing
+Plug 'junegunn/goyo.vim'
 "Plug 'reedes/vim-wordy'
 "Plug 'ron89/thesaurus_query.vim'
 
@@ -372,16 +395,25 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 " === Dress up my vim
 " ===
-set termguicolors     " enable true colors support
-" set $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-colorscheme deus
-" let g:space_vim_transp_bg = 1
-"let g:vim_monokai_tasty_italic = 1
-"set background=dark
-" colorscheme space_vim_theme
-" colorscheme ayu
-"colorscheme vim-monokai-tasty
+"let ayucolor="mirage"
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+"let g:one_allow_italics = 1
+
+"color dracula
+"color one
+color deus
+"color gruvbox
+"let ayucolor="light"
+"color ayu
+"set background=light
+"color xcodedark
+
+hi NonText ctermfg=gray guifg=grey10
+"hi SpecialKey ctermfg=blue guifg=grey70
 
 " ===================== Start of Plugin Settings =====================
 
@@ -584,6 +616,15 @@ noremap L :UndotreeToggle<CR>
 let g:undotree_DiffAutoOpen = 1
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+	nmap <buffer> u <plug>UndotreeNextState
+	nmap <buffer> e <plug>UndotreePreviousState
+	nmap <buffer> U 5<plug>UndotreeNextState
+	nmap <buffer> E 5<plug>UndotreePreviousState
+endfunc
 
 
 " ==
@@ -752,6 +793,8 @@ nnoremap - N
 " ===
 " === vim-go
 " ===
+let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 0
 let g:go_textobj_enabled = 0
 let g:go_auto_type_info = 1
 "let g:go_def_mapping_enabled = 1
@@ -899,6 +942,10 @@ let g:peekaboo_compact = 0
 " ==
 let g:syntastic_javascript_check = ['eslint']
 
+" ===
+" === fzf-quickfix
+" ===
+nnoremap <c-q> :Quickfix!<CR>
 
 " ===================== End of Plugin Settings =====================
 
